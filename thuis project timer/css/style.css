@@ -1,10 +1,10 @@
-   body {
-            margin: 0;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #ff0000 100%);
-            font-family: 'Poppins', sans-serif;
-        }
-        
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #ff0000 100%);
+    font-family: 'Poppins', sans-serif;
+}
+
 #deeltjes {
     position: fixed;
     top: 0;
@@ -13,7 +13,6 @@
     height: 100%;
     z-index: -1;
 }
-
 
 .container {
     width: 100%;
@@ -29,8 +28,9 @@
 #time {
     display: flex;
     gap: 40px;
-    color: #fff;
+    color: #ffffff;
     padding: 30px;
+    margin-top: 30px;
 }
 
 #time .circle {
@@ -41,7 +41,6 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
-    cursor: pointer;
 }
 
 #time .circle:hover {
@@ -70,20 +69,31 @@
     transition: stroke-dashoffset 0.5s ease-in-out;
 }
 
-#time div {
+#time .circle div {
     position: absolute;
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#time div span {
-    position: absolute;
-    transform: translate(-50%, 0px);
-    font-size: 0.5rem;
-    font-weight: 300;
+#time .circle div#uren,
+#time .circle div#minuten,
+#time .circle div#seconden {
+    font-size: 2.5rem; 
+
+    font-weight: 600;
+    line-height: 1;
+}
+
+#time .circle div span {
+    font-size: 0.65rem; 
+    font-weight: 400;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
+    margin-top: 10px; 
+    color: rgba(255, 255, 255, 0.8);
 }
 
 #time .aand {
@@ -95,6 +105,8 @@
     border-radius: 20px;
     letter-spacing: 1px;
     box-shadow: 0 0 10px rgba(255, 41, 114, 0.5);
+    margin-top: 10px;
+    align-self: flex-start;
 }
 
 .punten {
@@ -115,4 +127,19 @@
     background: var(--color);
     border-radius: 50%;
     box-shadow: 0 0 20px var(--color), 0 0 60px var(--color);
+}
+
+/* op tekefoon goedzetten */
+@media (max-width: 768px) {
+    #time {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 0;
+    }
+    
+    #time .aand {
+        transform: translate(0);
+        align-self: center;
+        margin-top: 20px;
+    }
 }
