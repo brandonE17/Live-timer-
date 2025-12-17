@@ -5,7 +5,7 @@
             font-family: 'Poppins', sans-serif;
         }
         
-#particles {
+#deeltjes {
     position: fixed;
     top: 0;
     left: 0;
@@ -86,7 +86,7 @@
     text-transform: uppercase;
 }
 
-#time .ap {
+#time .aand {
     position: relative;
     font-size: 1rem;
     transform: translate(-20px);
@@ -97,7 +97,7 @@
     box-shadow: 0 0 10px rgba(255, 41, 114, 0.5);
 }
 
-.dots {
+.punten {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -106,7 +106,7 @@
     z-index: 10;
 }
 
-.dots::before {
+.punten::before {
     content: '';
     position: absolute;
     top: -3px;

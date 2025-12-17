@@ -1,78 +1,78 @@
-// Particles Achtergrond
-const canvas = document.getElementById('particles');
+// Deeltjesachtergrond
+const canvas = document.getElementById('deeltjes');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const particles = [];
+const deeltjes = [];
 for (let i = 0; i < 80; i++) {
-    particles.push({
+    deeltjes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 0.5 - 0.25,
-        speedY: Math.random() * 0.5 - 0.25,
-        color: `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`
+        grootte: Math.random() * 3 + 1,
+        snelheidX: Math.random() * 0.5 - 0.25,
+        snelheidY: Math.random() * 0.5 - 0.25,
+        kleur: `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`
     });
 }
 
-function animateParticles() {
+function animeerDeeltjes() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+    deeltjes.forEach(p => {
+        p.x += p.snelheidX;
+        p.y += p.snelheidY;
+        if (p.x < 0 || p.x > canvas.width) p.snelheidX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.snelheidY *= -1;
         
-        ctx.fillStyle = p.color;
+        ctx.fillStyle = p.kleur;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.grootte, 0, Math.PI * 2);
         ctx.fill();
     });
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animeerDeeltjes);
 }
-animateParticles();
+animeerDeeltjes();
 
-// timer functionaliteit
+// Timerfunctionaliteit
 setInterval(() => {
-    const hours = document.getElementById('hours');
-    const minutes = document.getElementById('minutes');
-    const seconds = document.getElementById('seconds');
-    const ampm = document.getElementById('ampm');
-    const hh = document.getElementById('hh');
-    const mm = document.getElementById('mm');
-    const ss = document.getElementById('ss');
-    const dotH = document.querySelector('.h_dot');
-    const dotM = document.querySelector('.m_dot');
-    const dotS = document.querySelector('.s_dot');
+    const urenEl = document.getElementById('uren');
+    const minutenEl = document.getElementById('minuten');
+    const secondenEl = document.getElementById('seconden');
+    const aanduidingEl = document.getElementById('aanduiding');
+    const uuCirkel = document.getElementById('uu_cirkel');
+    const mmCirkel = document.getElementById('mm_cirkel');
+    const ssCirkel = document.getElementById('ss_cirkel');
+    const puntUur = document.querySelector('.punt_uur');
+    const puntMinuut = document.querySelector('.punt_minuut');
+    const puntSeconde = document.querySelector('.punt_seconde');
 
     const now = new Date();
-    const hNum = now.getHours();
-    const mNum = now.getMinutes();
-    const sNum = now.getSeconds();
-    const ap = hNum >= 12 ? 'NM' : 'VM';
+    const uurGetal = now.getHours();
+    const minuutGetal = now.getMinutes();
+    const secondeGetal = now.getSeconds();
+    const periode = uurGetal >= 12 ? 'NM' : 'VM';
 
-    let h = hNum;
-    if (h > 12) h = h - 12;
-    const hStr = h < 10 ? '0' + h : '' + h;
-    const mStr = mNum < 10 ? '0' + mNum : '' + mNum;
-    const sStr = sNum < 10 ? '0' + sNum : '' + sNum;
+    let uurWeergave = uurGetal;
+    if (uurWeergave > 12) uurWeergave = uurWeergave - 12;
+    const uurStr = uurWeergave < 10 ? '0' + uurWeergave : '' + uurWeergave;
+    const minuutStr = minuutGetal < 10 ? '0' + minuutGetal : '' + minuutGetal;
+    const secondeStr = secondeGetal < 10 ? '0' + secondeGetal : '' + secondeGetal;
 
-    hours.innerHTML = hStr + '<span>Uren</span>';
-    minutes.innerHTML = mStr + '<span>Minuten</span>';
-    seconds.innerHTML = sStr + '<span>Seconden</span>';
-    ampm.innerHTML = ap;
+    urenEl.innerHTML = uurStr + '<span>Uren</span>';
+    minutenEl.innerHTML = minuutStr + '<span>Minuten</span>';
+    secondenEl.innerHTML = secondeStr + '<span>Seconden</span>';
+    aanduidingEl.innerHTML = periode;
 
-    hh.style.strokeDashoffset = 440 - (440 * h) / 12;
-    mm.style.strokeDashoffset = 440 - (440 * mNum) / 60;
-    ss.style.strokeDashoffset = 440 - (440 * sNum) / 60;
+    uuCirkel.style.strokeDashoffset = 440 - (440 * uurWeergave) / 12;
+    mmCirkel.style.strokeDashoffset = 440 - (440 * minuutGetal) / 60;
+    ssCirkel.style.strokeDashoffset = 440 - (440 * secondeGetal) / 60;
 
-    dotH.style.transform = `rotate(${h * 30}deg)`;
-    dotM.style.transform = `rotate(${mNum * 6}deg)`;
-    dotS.style.transform = `rotate(${sNum * 6}deg)`;
+    puntUur.style.transform = `rotate(${uurWeergave * 30}deg)`;
+    puntMinuut.style.transform = `rotate(${minuutGetal * 6}deg)`;
+    puntSeconde.style.transform = `rotate(${secondeGetal * 6}deg)`;
 
-    // Micro-interactie bij wisseleqn van secondes
-    if (sNum === 0) {
+    // Micro-interactie bij secondewissel
+    if (secondeGetal === 0) {
         document.querySelectorAll('.circle').forEach(circle => {
             circle.style.transform = 'scale(1.03)';
             setTimeout(() => circle.style.transform = 'scale(1)', 300);
@@ -86,4 +86,4 @@ document.querySelectorAll('.circle').forEach(circle => {
         circle.style.transform = 'scale(0.95)';
         setTimeout(() => circle.style.transform = 'scale(1)', 200);
     });
-});  
+});
