@@ -1,4 +1,10 @@
-/* Particle canvas */
+   body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Poppins', sans-serif;
+        }
+        
 #particles {
     position: fixed;
     top: 0;
