@@ -46,31 +46,33 @@ setInterval(() => {
     const dotM = document.querySelector('.m_dot');
     const dotS = document.querySelector('.s_dot');
 
-    let h = new Date().getHours();
-    let m = new Date().getMinutes();
-    let s = new Date().getSeconds();
-    let ap = h >= 12 ? 'NM' : 'VM';
+    const now = new Date();
+    const hNum = now.getHours();
+    const mNum = now.getMinutes();
+    const sNum = now.getSeconds();
+    const ap = hNum >= 12 ? 'NM' : 'VM';
 
+    let h = hNum;
     if (h > 12) h = h - 12;
-    h = h < 10 ? '0' + h : h;
-    m = m < 10 ? '0' + m : m;
-    s = s < 10 ? '0' + s : s;
+    const hStr = h < 10 ? '0' + h : '' + h;
+    const mStr = mNum < 10 ? '0' + mNum : '' + mNum;
+    const sStr = sNum < 10 ? '0' + sNum : '' + sNum;
 
-    hours.innerHTML = h + '<span>Uren</span>';
-    minutes.innerHTML = m + '<span>Minuten</span>';
-    seconds.innerHTML = s + '<span>Seconden</span>';
+    hours.innerHTML = hStr + '<span>Uren</span>';
+    minutes.innerHTML = mStr + '<span>Minuten</span>';
+    seconds.innerHTML = sStr + '<span>Seconden</span>';
     ampm.innerHTML = ap;
 
     hh.style.strokeDashoffset = 440 - (440 * h) / 12;
-    mm.style.strokeDashoffset = 440 - (440 * m) / 60;
-    ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+    mm.style.strokeDashoffset = 440 - (440 * mNum) / 60;
+    ss.style.strokeDashoffset = 440 - (440 * sNum) / 60;
 
     dotH.style.transform = `rotate(${h * 30}deg)`;
-    dotM.style.transform = `rotate(${m * 6}deg)`;
-    dotS.style.transform = `rotate(${s * 6}deg)`;
+    dotM.style.transform = `rotate(${mNum * 6}deg)`;
+    dotS.style.transform = `rotate(${sNum * 6}deg)`;
 
     // Micro-interactie bij secondewissel
-    if (s === 0) {
+    if (sNum === 0) {
         document.querySelectorAll('.circle').forEach(circle => {
             circle.style.transform = 'scale(1.03)';
             setTimeout(() => circle.style.transform = 'scale(1)', 300);
