@@ -129,7 +129,7 @@ body {
     box-shadow: 0 0 20px var(--color), 0 0 60px var(--color);
 }
 
-/* op tekefoon goedzetten */
+/* op telefoon goedzetten */
 @media (max-width: 768px) {
     #time {
         flex-direction: column;
