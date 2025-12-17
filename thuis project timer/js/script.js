@@ -1,4 +1,4 @@
-// Particle Achtergrond
+// Particles Achtergrond
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -33,7 +33,7 @@ function animateParticles() {
 }
 animateParticles();
 
-// Klokfunctionaliteit
+// timer functionaliteit
 setInterval(() => {
     const hours = document.getElementById('hours');
     const minutes = document.getElementById('minutes');
@@ -71,7 +71,7 @@ setInterval(() => {
     dotM.style.transform = `rotate(${mNum * 6}deg)`;
     dotS.style.transform = `rotate(${sNum * 6}deg)`;
 
-    // Micro-interactie bij secondewissel
+    // Micro-interactie bij wisseleqn van secondes
     if (sNum === 0) {
         document.querySelectorAll('.circle').forEach(circle => {
             circle.style.transform = 'scale(1.03)';
@@ -80,7 +80,7 @@ setInterval(() => {
     }
 }, 1000);
 
-// Klikfeedback
+// feeedback bij het klikken 
 document.querySelectorAll('.circle').forEach(circle => {
     circle.addEventListener('click', () => {
         circle.style.transform = 'scale(0.95)';
